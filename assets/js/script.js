@@ -69,14 +69,14 @@ const randomChoreDoorGenerator=()=>{
 
 
 doorImage1.onclick = () => {
-  if(!isClicked(doorImage1)) {
+  if(currentlyPlaying && !isClicked(doorImage1)) {
     doorImage1.src= openDoor1
     playDoor(doorImage1)
-  }
+  } 
 }
 
 doorImage2.onclick = () => {
-  if(!isClicked(doorImage2)) {
+  if(currentlyPlaying && !isClicked(doorImage2)) {
     doorImage2.src= openDoor2
     playDoor(doorImage2)
   }
@@ -85,15 +85,32 @@ doorImage2.onclick = () => {
 
 
 doorImage3.onclick = () => {
-  if(!isClicked(doorImage3)) {
+  if(currentlyPlaying && !isClicked(doorImage3)) {
     doorImage3.src= openDoor3
     playDoor(doorImage3)
   }
 
   }
 
+const startRound = () => {
+    doorImage1.src = closedDoorPath;
+    doorImage2.src = closedDoorPath;
+    doorImage3.src = closedDoorPath;
+    numClosedDoors = 3;
+    startButton.innerHTML = "Good luck!";
+    currentlyPlaying = true;
+    randomChoreDoorGenerator()
+}
+
+  startButton.onclick = () => {
+     if(currentlyPlaying === true) {
+        
+     } else {
+        startRound()
+     }
+  }
 
 
 
 
-randomChoreDoorGenerator()
+startRound()
